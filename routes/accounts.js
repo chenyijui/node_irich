@@ -18,6 +18,15 @@ router.post('/create', function(req, res) {
     });
 });
 
+router.get('/:account_id', function(req, res, next){
+    models.Account.findOne({
+        where:{id: req.params.account_id
+        }
+    }).then(function(account){
+        res.render('account',{account: account});
+    });
+});
+
 router.get('/:account_id/update', function(req, res, next) {
     models.Account.findOne({
         where:{id: req.params.account_id}
@@ -38,5 +47,15 @@ router.post('/:account_id/update', function(req, res, next) {
     }).then(function(){
         res.redirect('/');
     });
+});
+
+router.post('/:account_id/delete',function(req, res, next){
+    models.Account.destroy({
+        where:{
+            id: req.params.account_id
+        }
+    }).then(function() {
+        res.redirect('/');
+    })
 });
 module.exports = router;

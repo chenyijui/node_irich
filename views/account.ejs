@@ -37,38 +37,20 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container main-container">
         <!-- Example row of columns -->
-        <table class="table table-hover">
-            <tr>
-                <th>消費名稱</th>
-                <th>消費類型</th>
-                <th>支出</th>
-                <th>操作</th>
-            </tr>
-            <% for(var i =0; i < accounts.length; i++){ %>
-                <tr>
-                    <td>
-                        <a href="/accounts/<%= accounts[i].id %>">
-                            <%= accounts[i].title %>
-                        </a>
-                    </td>
-                    <td>
-                        <%= accounts[i].type %>
-                    </td>
-                    <td>
-                        <%= accounts[i].cost %>
-                    </td>
-                    <td><a href="/accounts/<%= accounts[i].id %>/update"><button class="btn btn-warning">更新</button></a>
-                    </td>
-                    <td>
-                        <form method="post" action="/accounts/<%= accounts[i].id %>/delete">
-                            <button class="btn btn-danger">刪除</button>
-                        </form>
-                    </td>
-                </tr>
-                <% } %>
-        </table>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">
+                <%= account.title %>
+            </li>
+        </ol>
+
+        <div>
+            <h3>消費標題:<%= account.title %></h3>
+            <h3>消費類別:<%= account.type %></h3>
+            <h3>消費花費:<%= account.cost %></h3>
+        </div>
         <hr>
 
         <footer>

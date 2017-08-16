@@ -18,6 +18,25 @@ router.post('/create', function(req, res) {
     });
 });
 
-router.get('/')
+router.get('/:account_id/update', function(req, res, next) {
+    models.Account.findOne({
+        where:{id: req.params.account_id}
+    }).then(function(account) {
+        res.render('update_account', {account: account});
+    })
+});
 
+router.post('/:account_id/update', function(req, res, next) {
+    models.Account.findOne({
+        where:{id: req.params.account_id}
+    }).then(function(account) {
+        account.update({
+            title: req.body.title,
+            type: req.body.type,
+            cost: req.body.cost
+        });
+    }).then(function(){
+        res.redirect('/');
+    });
+});
 module.exports = router;
